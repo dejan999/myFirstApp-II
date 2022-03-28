@@ -1,0 +1,40 @@
+<div class="container" style="margin-top: 70px;">
+    <p class="lead">
+      Lists of reminders
+    </p>
+    
+    <div class="row">
+      <div class="col-md-6" ng-repeat="reminder in vm.reminders">
+        <div class="card" style="width: 25rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{reminder.reminder}}</h5>
+            
+            <h6 class="card-subtitle mb-2 text-muted"><i class="bi bi-watch"></i> {{reminder.dateForReminder.substr(11,5)}}</h6>
+           
+            <p class="card-text"><i class="bi bi-calendar-event"></i> {{reminder.dateForReminder.substr(0,10)}}</p>
+            <button type="button" class="btn btn-success" ng-click="vm.update(reminder)">Edit</button>
+            <button type="button" class="btn btn-danger" ng-click="vm.delete(reminder.id)">Delete</button>
+            <button type="button" class="btn btn-info" ng-click="vm.openMore(reminder)">More details</button>
+          </div>
+        </div>
+        <br><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#" ng-click="previous()">Previous</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="col-md-6">
+        <nav aria-label="Page navigation example" >
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#" ng-click="next()">Next</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <br>
+  </div>

@@ -1,0 +1,22 @@
+{
+  "reminders": [
+    {
+      "id": 1,
+      "reminder": "Ispt",
+      "reminderDetalis": "Polaganje ispita iz web-a\nIspit se polaze u velikom amfiteatru\nRade se zadaci iz JS-a\nProfesor Petar Petrovic",
+      "dateForReminder": "2022-03-24T13:15:00.000Z"
+    },
+    {
+      "id": 2,
+      "reminder": "Polaganje voznje B i C",
+      "reminderDetalis": "Poneti licnu kartu\nPoneti lekarsko uverenje\nI uplatnice o placenoj taksi polaganja",
+      "dateForReminder": "2022-04-11T19:30:00.000Z"
+    },
+    {
+      "id": 3,
+      "reminder": "Tehnicki pregled auta",
+      "reminderDetalis": "Poneti polisu osiguranuja\nI kopiranu licnu kartu",
+      "dateForReminder": "2022-03-18T16:00:00.000Z"
+    }
+  ]
+}
