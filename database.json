@@ -8,15 +8,27 @@
     },
     {
       "id": 2,
-      "reminder": "Polaganje voznje B i C",
+      "reminder": "Polaganje voznje B i C i A2 kategorije",
       "reminderDetalis": "Poneti licnu kartu\nPoneti lekarsko uverenje\nI uplatnice o placenoj taksi polaganja",
       "dateForReminder": "2022-04-11T19:30:00.000Z"
     },
     {
       "id": 3,
-      "reminder": "Tehnicki pregled auta",
+      "reminder": "Tehnicki pregled auta B5 Wv",
       "reminderDetalis": "Poneti polisu osiguranuja\nI kopiranu licnu kartu",
       "dateForReminder": "2022-03-18T16:00:00.000Z"
+    },
+    {
+      "reminder": "Upis FTN",
+      "reminderDetalis": "Upis na apsolventsku godinu\nPoneti uplatnice i popunjen 'SRO' obrazac\nI poneti fotokopiju licne karte",
+      "dateForReminder": "2022-03-30T07:28:00.000Z",
+      "id": 4
+    },
+    {
+      "reminder": "Popravka racunara",
+      "reminderDetalis": "Poneti i novo napajanje kada racunar bude odnet u servis",
+      "dateForReminder": "2022-03-29T13:15:00.000Z",
+      "id": 5
     }
   ]
 }

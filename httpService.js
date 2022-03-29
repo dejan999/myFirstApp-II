@@ -2,11 +2,11 @@ angular
     .module('app')
     .factory('httpService',function ($http) {
     
-    function view() {
+    function view(pageNext) {
         
         return $http({
             method: 'GET',
-            url: 'http://localhost:3000/reminders'
+            url: 'http://localhost:3000/reminders?_page=' + pageNext + '&_limit=4'
             
         })
         .then(function (response) {

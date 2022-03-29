@@ -2,7 +2,7 @@ angular
     .module('app')
     .controller('newRemindersController',newReminders);
 
-    function newReminders(httpService,$http) {
+    function newReminders(httpService,$http,$state) {
 
         var vm=this;
 
@@ -27,7 +27,8 @@ angular
 
                     vm.msg = "Post Data Submitted Successfully!";
                     alert(vm.msg);
-
+                    $state.go('reminders');
+                    
                 }, function (response) {
 
                     vm.msg = "Service not Exists";
