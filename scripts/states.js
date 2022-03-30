@@ -4,7 +4,7 @@
     .module('app')
     .config(config);
 
-        function config($stateProvider) {
+        function config($stateProvider,$locationProvider) {
         $stateProvider
             .state("reminders", {
                 url: "",
@@ -30,5 +30,6 @@
                 controller: "updateRemindersController",
                 controllerAs: "vm"
             })
+            $locationProvider.html5Mode(true);
     }
 })();
