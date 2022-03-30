@@ -1,11 +1,13 @@
-angular
+(function(){
+    'use strict';
+    angular
     .module('app')
     .config(config);
 
         function config($stateProvider) {
         $stateProvider
             .state("reminders", {
-                url: "/reminders",
+                url: "",
                 templateUrl: "Templeates/reminders.html",
                 controller: "remindersController",
                 controllerAs: "vm"
@@ -29,3 +31,4 @@ angular
                 controllerAs: "vm"
             })
     }
+})();

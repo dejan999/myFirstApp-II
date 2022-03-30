@@ -1,18 +1,17 @@
-angular
+(function(){
+    'use strict';
+    angular
     .module('app')
     .controller('moreDetalisController',moreDetalis)
 
-    function moreDetalis($http,$stateParams) {
+    function moreDetalis(httpService) {
 
         var vm=this;
 
-        $http({
-            method: 'GET',
-            url: 'http://localhost:3000/reminders',
-            params: { id: $stateParams.id }
-        })
+        httpService.more()
             .then(function (response) {
                 vm.reminders = response.data;
                 console.log(vm.reminders);
             })
     }
+})();

@@ -1,79 +1,90 @@
-angular
-    .module('app')
-    .controller('remindersController', reminders);
+(function () {
+    'use strict';
 
-function reminders(httpService, $http,$state) {
+    angular
+        .module('app')
+        .controller('remindersController', reminders);
 
-    var vm = this;
+    function reminders(httpService, $state) {
 
+        var vm = this;
         var pageNext = 1;
         var maxLimit;
         var newLimit;
 
-    function print() {
-        httpService.view(pageNext)
-            .then(function (response) {
-                vm.reminders = response.data;
-                maxLimit = response.headers('X-Total-Count');
-                newLimit = Math.ceil(maxLimit / 4);
-                console.log(newLimit);
-                console.log(vm.reminders);
-            })
+        print();
+        vm.next = next;
+        vm.previous = previous;
+        vm.delete = deleteReminder;
+        vm.openMore = openMore;
+        vm.update = update;
 
-            
-    }
-    print()
-    vm.next = function () {
-        if (pageNext < newLimit) {
-            pageNext++;
+
+        function print() {
+            httpService.view(pageNext)
+                .then(function (response) {
+                    vm.reminders = response.data;
+                    maxLimit = response.headers('X-Total-Count');
+                    newLimit = Math.ceil(maxLimit / 4);
+                    console.log(newLimit);
+                    console.log(vm.reminders);
+                })
+                .catch(function (error) {
+                    alert('Error');
+                })
+
+
         }
-       print()
 
-    }
-    vm.previous = function () {
-        if (pageNext > 1) {
-            pageNext--;
+        function next() {
+            if (pageNext < newLimit) {
+                pageNext++;
+            }
+            print();
+
+        }
+        function previous() {
+            if (pageNext > 1) {
+                pageNext--;
+            }
+
+            print();
+
+        }
+        function deleteReminder(f) {
+
+            var userval = confirm("Do you like to delite this reminder?!")
+
+            if (userval == true) {
+                httpService.delete(f)
+                    .then(function (response) {
+
+                        if (response.data)
+
+                        print()
+                        vm.msg = "Reminder is deleted!";
+                        alert(vm.msg);
+
+                    })
+                        .catch(function (response) {
+
+                            vm.msg = "Something is wrong";
+                            alert(vm.msg);
+                            vm.statusval = response.status;
+                            vm.statustext = response.statusText;
+                            vm.headers = response.headers();
+                        })
+                    
+            }
         }
 
-        print()
+        function openMore(reminder) {
+            $state.go("moreDetalis", { id: reminder.id })
+        }
 
-    }
-    vm.delete = function (f) {
-
-        var userval = confirm("Do you like to delite this reminder?!")
-
-        if (userval == true) {
-            $http.delete('http://localhost:3000/reminders/' + f).then(function (response) {
-
-                if (response.data)
-
-                 print()
-                vm.msg = "Reminder is deleted!";
-                alert(vm.msg);
-
-            }, function (response) {
-
-                vm.msg = "something is wrong";
-                alert(vm.msg);
-                vm.statusval = response.status;
-
-                vm.statustext = response.statusText;
-
-                vm.headers = response.headers();
-
-            });
+        function update(reminder) {
+            $state.go("updateReminders", { id: reminder.id })
         }
     }
+})();
 
-    vm.openMore = function (reminder) {
-        console.log(reminder);
-        $state.go("moreDetalis", { id: reminder.id })
-        
-    }
-
-    vm.update = function (reminder) {
-        
-        $state.go("updateReminders", { id: reminder.id })
-        
-    }
-}

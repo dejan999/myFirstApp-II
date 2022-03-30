@@ -1,45 +1,38 @@
-angular
+(function(){
+    'use strict';
+    angular
     .module('app')
     .controller('newRemindersController',newReminders);
 
-    function newReminders(httpService,$http,$state) {
+    function newReminders(httpService,$state) {
 
         var vm=this;
 
         httpService.view()
-        
-        vm.addEmp=function (empTitle,empDetalis,empDate) {
-            data={
+        vm.addEmp=addEmp
+
+        function addEmp(empTitle,empDetalis,empDate) {
+           var data={
                 reminder:empTitle,
                 reminderDetalis:empDetalis,
                 dateForReminder:empDate
             }
-            console.log(data);
 
             if (data.reminder == null || data.reminderDetalis == null || data.dateForReminder == null) {
                 alert("Please, fill in all fields!")
             }
             else {
-                $http.post('http://localhost:3000/reminders', JSON.stringify(data)).then(function (response) {
+                httpService.add(data)
+                .then(function (response) {
 
                     if (response.data)
-
-
                     vm.msg = "Post Data Submitted Successfully!";
                     alert(vm.msg);
                     $state.go('reminders');
                     
-                }, function (response) {
-
-                    vm.msg = "Service not Exists";
-                    alert(vm.msg);
-                    vm.statusval = response.status;
-
-                    vm.statustext = response.statusText;
-
-                    vm.headers = response.headers();
-
-                });
+                }).catch(function (error) {
+                    alert('Error');
+                })
 
                 vm.empTitle = '';
                 vm.empDetalis = '';
@@ -48,3 +41,4 @@ angular
 
         }
     }
+})();
